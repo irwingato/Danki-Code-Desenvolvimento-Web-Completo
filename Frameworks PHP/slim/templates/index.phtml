@@ -1,0 +1,29 @@
+<?php
+	if(isset($info)){
+		$nome = $info['nome'];
+		$email = $info['email'];
+		$sql = MySql::connect()->prepare("INSERT INTO clientes VALUES (null,?,?)");
+		$sql->execute(array($nome,$email));
+		echo '<script>alert("inserido com sucesso!")</script>';
+	}
+?>
+<h2>Clientes:</h2>
+<ul>
+	<?php
+	$clientes = MySql::connect()->prepare("SELECT * FROM clientes");
+	$clientes->execute();
+	$clientes = $clientes->fetchAll();
+	foreach ($clientes as $key => $value) {
+	?>
+		<li><a href="clientes/<?php echo $value['id']; ?>"><?php echo $value['nome'] ?></a></li>
+	<?php } ?>
+</ul>
+
+
+<h2>Cadastrar novo cliente:</h2>
+<form method="post">
+	<input type="text" name="nome" placeholder="Nome...">
+	<input type="text" name="email" placeholder="E-mail...">
+	<input type="submit" value="Enviar!">
+</form>
+

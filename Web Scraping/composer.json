@@ -1,0 +1,6 @@
+{
+    "require": {
+        "electrolinux/phpquery": "^0.9.6",
+        "duzun/hquery": "^3.0"
+    }
+}

@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => '__root__',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'duzun/hquery' => array(
+            'pretty_version' => '3.0.3',
+            'version' => '3.0.3.0',
+            'reference' => 'e3e8dcbe9de7cac5693aeb8c2a62a761cb152e49',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../duzun/hquery',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'electrolinux/phpquery' => array(
+            'pretty_version' => '0.9.6',
+            'version' => '0.9.6.0',
+            'reference' => '6cb8afcfe8cd4ce45f2f8c27d561383037c27a3a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../electrolinux/phpquery',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

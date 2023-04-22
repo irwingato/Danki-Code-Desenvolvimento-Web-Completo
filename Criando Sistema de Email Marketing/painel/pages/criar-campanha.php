@@ -1,0 +1,48 @@
+<div class="box-content">
+<?php
+	if(isset($_POST['acao'])){
+		$conteudo = $_POST['conteudo'];
+		$assunto = $_POST['assunto'];
+		$contatos = \MySql::conectar()->prepare("SELECT * FROM `tb_admin_contatos` WHERE lista_id = ?");
+		$contatos->execute(array($_POST['lista_id']));
+		$contatos = $contatos->fetchAll();			
+		foreach ($contatos as $key => $value) {
+			$mail = new \Email('vps.dankicode.com','testes@dankicode.com','gui123456','Guilherme | Danki');	
+			$mail->formatarEmail(array('assunto'=>$assunto,'corpo'=>$conteudo));
+			$email_atual = $value['email'];
+			$mail->addAddress($email_atual,'');
+			$mail->enviarEmail();
+			sleep(1);
+		}
+		Painel::alert('sucesso','Campanha enviada com sucesso!');
+	}
+
+?>
+	<h2><i class="fa-solid fa-pen"></i> Enviar e-mail para lista</h2>	
+
+	<form method="post">
+
+		<div class="form-group">
+			<label>Escolha a lista:</label>
+			<select name="lista_id">
+				<?php
+					$listas = \MySql::conectar()->prepare("SELECT * FROM `tb_admin_listas_email`");
+					$listas->execute();
+					$listas = $listas->fetchAll();
+					foreach ($listas as $key => $value) {
+				?>
+					<option value="<?php echo $value['id'] ?>"><?php echo $value['nome_lista'] ?></option>
+				<?php } ?>
+			</select>
+		</div><!--form-group-->
+		<div class="form-group">
+			<label>Texto do seu e-mail:</label>
+			<input type="text" name="assunto">
+		</div>
+		<div class="form-group">
+			<label>Texto do seu e-mail:</label>
+			<textarea name="conteudo"></textarea>
+			<input type="submit" name="acao" value="Disparar!">
+		</div><!--form-group-->
+	</form>
+</div>

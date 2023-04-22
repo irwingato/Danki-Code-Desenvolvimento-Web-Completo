@@ -1,0 +1,8 @@
+<?php
+	$cliente = MySql::connect()->prepare("SELECT * FROM clientes WHERE id = ?");
+	$cliente->execute(array((int)$id));
+	$cliente = $cliente->fetch();
+?>
+<h2><a href="<?php echo BASE_URL ?>">Clientes</a> > Single</h2>
+<h3>Nome: <?php echo $cliente['nome']; ?></h3>
+<h3>E-mail: <?php echo $cliente['email']; ?></h3>

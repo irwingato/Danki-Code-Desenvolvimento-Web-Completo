@@ -1,0 +1,3 @@
+<?php
+	define('NOME','Guilherme');
+?>
